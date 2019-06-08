@@ -8,6 +8,7 @@ seq2 = nucleo.Sequence;
 %seq1= 'TAGGCTTA'
 
 
+
 sm = [1 -1 -1 -1;
       -1 1 -1 -1;
       -1 -1 1 -1;
