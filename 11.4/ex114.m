@@ -11,7 +11,7 @@ seq = [x];
 best_path = fliplr(best_path);
 disp("Best score was: "+score)
 final = '';
-for i=1:4,
+for i=1:size(x,2),
     final = [final  katastaseis(best_path(i))];
 end
 disp("Best path was: "+final)
