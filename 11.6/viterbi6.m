@@ -5,12 +5,14 @@ function [maximum,best_path,second_path] = viterbi6(prob_init,A,B,x)
     T = length(x);
     C = zeros(N,T);
     pred = size(N,T);
-    
+    L = size(A,2);
     prob_init = log2(prob_init);
     A = log2(A);
     B = log2(B);
     P = (log2([0.5 0.125 0.03125 0.00390625 0.0009765625 0.0001220703125 0.000007629394531; ...
               0.5 0.0625 0.015625 0.00390625 0.00048828125 0.0001220703125 0.000015258789062]));
+    P2 = (log2([0.5 0.18 0.648 0.05832 0.0052488 ; ...
+                0.5 0.09 0.0162 0.00648 0.0017496 ]));
     for i=1:N
         C(i,1) = prob_init(i);
         
@@ -25,7 +27,7 @@ function [maximum,best_path,second_path] = viterbi6(prob_init,A,B,x)
                 v(p)= C(p,t)+A(p,i)+B(x(t),p);
                 vp(t,p,i) = v(p);
                 if t == T,
-                v(p)= C(p,t)+A(p,3)+B(x(t),p);
+                v(p)= C(p,t)+A(p,L)+B(x(t),p);
                 endscore(p) = v(p);
                 end
             end
@@ -44,9 +46,11 @@ function [maximum,best_path,second_path] = viterbi6(prob_init,A,B,x)
 
     %viterbi score
     [maxscore,index] = max((C(:,T+1)));
+    round(P2)
     maximum = maxscore;
     pred(N,T) = index;
     t = T-1;
+    t = T;
     best_path = [index];
     second_path = [index];
     second_index = index;
