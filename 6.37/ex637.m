@@ -3,7 +3,7 @@ clc
 amino_acids = struct2cell(fastaread('amino.txt'));
 for a = 1:length(amino_acids),
 seq = cell2mat(aa2nt(amino_acids(2,a)));
-%%seq = ['CCCCCCCCCCTAAAGGGGCCCCCTTTTTTTCC'] book example
+%seq = ['AAACAAAAAAACACCCCCCCCCCCGGGGTTTTT'] 
 
 newSeq = [];
 counts = [0 0 0 0];
@@ -22,9 +22,9 @@ for i=2:length(seq),
     end
     
 end
+end
 seq
 newSeq
-end
 
 function countAGCT = resetCounts(next,counts)
 letters = ['A' ,'C', 'G', 'T'];
@@ -43,7 +43,7 @@ end
 function [countAGCT,maxed,new] = checkNext(next,counts,seq,current)
 letters = ['A' ,'C', 'G', 'T'];
 for k = 1:length(letters),
-    limits = [5, 10, inf, inf];
+    limits = [6, 11, inf, inf];
     if next == letters(k),
        counts(k) = counts(k) + 1;
        if counts(k) == limits(k),
