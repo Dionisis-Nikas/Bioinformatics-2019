@@ -7,6 +7,8 @@ katastaseis = ['a','b'] ;
 x = nt2int('GGCT');
 prob_init = [0.5; 0.5];
 seq = [x];
+state = hmmviterbi(seq,flip(A),B')
+
 [score,best_path] = viterbi4(prob_init,A,B,x);
 best_path = best_path;
 disp("Best score was: "+score)
