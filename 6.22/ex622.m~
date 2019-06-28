@@ -1,13 +1,15 @@
 clear
 clc
-lysozyme = fastaread('lysozyme.txt');
-nucleo = fastaread('α-lactalbumin.txt');
+%lysozyme = fastaread('lysozyme.txt');
+%nucleo = fastaread('α-lactalbumin.txt');
 
 %%our sequences
-seq1 = lysozyme.Sequence;
-seq2 = nucleo.Sequence;
-seq1= 'GTAGGCTTAAGGTTA';
-seq2= 'TAGATA'; %the adaptive sequence
+%seq1 = lysozyme.Sequence;
+%seq2 = nucleo.Sequence;
+%seq1= 'GTAGGCTTAAGGTTA';
+seq1= 'TATATA';%prefix sequence
+seq2= 'AAATTT';%sufix sequence
+
 
 %%the scoring matrix for each letter in the form of:
 %%     A C G T
@@ -36,27 +38,36 @@ F = zeros(m,n);
 blocks = []
 %%initialize the first row and first column with the scores based on the
 %%empty block
-for j = 0:n-1
-    F(1,j+1) = -j;
-end
-for j = 0:m-1
-    F(j+1,1) = -j;
-end
+%for j = 0:n-1
+ %   F(1,j+1) = -j;
+%end
+%for j = 0:m-1
+ %   F(j+1,1) = -j;
+%end
 
 %%compare the top left, top and left cells of each cell and assign the one
 %%with the maximum score of similarity
-for i = 2:m
-    for j = 2:n
-        match = F(i-1,j-1)+sm(nt2int(seq1(i-1)),nt2int(seq2(j-1)));
-        delete = F(i-1,j) - 1;
-        insert = F(i,j-1) - 1;
-        max_blocks = [match,insert,delete];
-        F(i,j) = max(max_blocks);
-        count = count+1;
-        disp("Completed: "+count+"/"+max_time)
-    end
+%for i = 2:m
+ %   for j = 2:n
+  %      match = F(i-1,j-1)+sm(nt2int(seq1(i-1)),nt2int(seq2(j-1)));
+   %     delete = F(i-1,j) - 1;
+    %    insert = F(i,j-1) - 1;
+     %   max_blocks = [match,insert,delete];
+      %  F(i,j) = max(max_blocks);
+       % count = count+1;
+        %disp("Completed: "+count+"/"+max_time)
+   % end
        
+%end
+
+for i = 2:m
+   for j = 2:n
+       F(i,j) = sm(nt2int(seq1(i-1)),nt2int(seq2(j-1)));
+   end
 end
+
+scores = []
+for 
 toc
 disp(newline)
 %%end of matrix initialization
