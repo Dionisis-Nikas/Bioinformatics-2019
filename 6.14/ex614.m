@@ -3,7 +3,7 @@ clc
 options = ["brain", "liver", "muscle"];
 prompt = 'Please select two of the available nucleotides: brain, liver and muscle \n Type 1,2 or 3 accordingly with brackets (ex. [1 2])\n'; 
 type = [input(prompt)];
-while (type <= 0) | ((type > 3) | (~length(type) == 2)%%if type smaller than 0 or type bigger than 3 or input was 3 numbers
+while (type <= 0) | ((type > 3) | (~length(type) == 2))%%if type smaller than 0 or type bigger than 3 or input was 3 numbers
  prompt = 'Please select two of the available nucleotides: brain, liver and muscle\n Type 1,2 or 3 accordingly with coma (ex. [1 2])\n \n'; 
  type = [input(prompt)];
 end

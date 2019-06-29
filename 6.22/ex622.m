@@ -1,7 +1,7 @@
 clear
 clc
-%lysozyme = fastaread('lysozyme.txt');
-%nucleo = fastaread('α-lactalbumin.txt');
+lysozyme = fastaread('lysozyme.txt');
+nucleo = fastaread('a-lactalbumin.txt');
 
 %%our sequences
 %seq1 = lysozyme.Sequence;
@@ -51,7 +51,7 @@ k = 2;
 p =1;
 for i = m:-1:2,
     score = 0;
-    l = i;
+    l = i; % el einai auto pou fainetai san 1
     letters1 = [];
     letters2 = [];
     for j = 2:k,

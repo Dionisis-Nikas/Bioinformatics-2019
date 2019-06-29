@@ -1,48 +1,48 @@
 clear
 clc
-nucleo = fastaread('Ξ±-lactalbumin.txt');
-seq = nucleo.Sequence
+nucleo = fastaread('a-lactalbumin.txt');
+seq = nucleo.Sequence;
 
 player_win = []; %%if sequence is empty p1 wins 
-player_win = [player_win 1 1]
+player_win = [player_win 1 1];
 player_moves = [1 2];
-for i = 3:length(seq),
-    if ~player_win(i-2),
+for i = 3:length(seq)
+    if ~player_win(i-2)  %i - 2 νουκλεοτίδια από την ακολουθία
        player_win = [player_win 1];
        player_moves = [player_moves 2];
        moves = [];
-   elseif ~player_win(i-1),
+   elseif ~player_win(i-1)  % i - 1 νουκλεοτίδιο
        player_win = [player_win 1];
        player_moves = [player_moves 2];
        moves = [];
-    else,
+    else
        player_win = [player_win 0];
-       player_moves = [player_moves 2];
+       %player_moves = [player_moves 2];  νομίζω πως δεν χρειάζεται δες το
     end
     
         
-end;
+end
 
-if player_win(length(seq)),
+if player_win(length(seq))
     disp("Player 1 wins!!")
-else,
+else
     disp("Player 2 wins!!")
     
 end
 
 disp("Removig sequence was : ")
-for i = 10:20,
+for i = 10:20
     disp("For length "+(i)+": ")
-    if player_win(i),
+    if player_win(i)
     disp("Player 1 wins!! with moves: ")
-    else,
+    else
     disp("Player 2 wins!! with moves: ")
     end
-    if i == 1,
+    if i == 1
         disp(player_moves(i))
-    elseif i == 2,
+    elseif i == 2
         disp(player_moves(i:-1:2))
-    elseif i == 3,
+    elseif i == 3
         disp(player_moves(i-1:-1:1))
     elseif mod(i,2)==0
         disp(player_moves(i:-1:((i/2)+1)))

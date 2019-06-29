@@ -1,7 +1,7 @@
 clear
 clc
 lysozyme = fastaread('lysozyme.txt');
-nucleo = fastaread('α-lactalbumin.txt');
+nucleo = fastaread('a-lactalbumin.txt');
 
 %%our sequences
 seq1 = lysozyme.Sequence;
