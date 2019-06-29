@@ -4,12 +4,16 @@ lysozyme = fastaread('lysozyme.txt');
 nucleo = fastaread('a-lactalbumin.txt');
 
 %%our sequences
-%seq1 = lysozyme.Sequence;
-%seq2 = nucleo.Sequence;
+seq1 = lysozyme.Sequence;
+seq2 = nucleo.Sequence;
 %seq1= 'GTAGGCTTAAGGTTA';
-seq1= 'TATATA';%prefix sequence
-seq2= 'AAATTT';%sufix sequence
-
+%seq1= 'TATATATGTAAAG';%prefix sequence
+%seq2= 'AAATTT';%sufix sequence
+if (strlength(seq2)>strlength(seq1),
+    temp = seq2;
+    seq2 = seq1;
+    seq1 = temp;
+end
 
 %%the scoring matrix for each letter in the form of:
 %%     A C G T
@@ -28,7 +32,7 @@ count = 0;
 
 %%add 1 to dimensions because we have the first empty block
 m = strlength(seq1)+1; 
-n = strlength(seq2)+1;
+n = strlength(seq2)+1+(m-1-strlength(seq2));
 
 max_time = ((n-1) * (m-1));
 
@@ -40,7 +44,11 @@ blocks = [];
 
 for i = 2:m
    for j = 2:n
-       F(i,j) = sm(nt2int(seq1(i-1)),nt2int(seq2(j-1)));
+       try
+        F(i,j) = sm(nt2int(seq1(i-1)),nt2int(seq2(j-1)));
+       catch
+           F(i,j) = -1;
+       end
    end
 end
 
@@ -56,8 +64,12 @@ for i = m:-1:2,
     letters2 = [];
     for j = 2:k,
         score = score + F(l,j);
-        letters1 = [letters1 seq1(l-1)];
-        letters2 = [letters2 seq2(j-1)];
+        try
+            letters1 = [letters1 seq1(l-1)];
+            letters2 = [letters2 seq2(j-1)];
+        catch
+            letters2 = [letters2 '-'];
+        end
         l = l+1;
     end
     k = k+1;
