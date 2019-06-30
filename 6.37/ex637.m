@@ -3,7 +3,7 @@ clc
 amino_acids = struct2cell(fastaread('amino.txt'));
 for a = 1:length(amino_acids)
 seq = cell2mat(aa2nt(amino_acids(2,a)));
-%seq = ('AAATAAAGGGGCCCCCTTTTTTTCC');  % the example of the book page 255
+seq = ('AAATAAAGGGGCCCCCTTTTTTTCC');  % the example of the book page 255
 
 newSeq = [];
 counts = [0 0 0 0];

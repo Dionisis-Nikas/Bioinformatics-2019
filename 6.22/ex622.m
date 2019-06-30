@@ -9,7 +9,7 @@ seq2 = nucleo.Sequence;
 %seq1= 'GTAGGCTTAAGGTTA';
 %seq1= 'TATATATGTAAAG';%prefix sequence
 %seq2= 'AAATTT';%sufix sequence
-if (strlength(seq2)>strlength(seq1),
+if (strlength(seq2)>strlength(seq1)),
     temp = seq2;
     seq2 = seq1;
     seq1 = temp;
@@ -46,7 +46,7 @@ for i = 2:m
    for j = 2:n
        try
         F(i,j) = sm(nt2int(seq1(i-1)),nt2int(seq2(j-1)));
-       catch
+        catch
            F(i,j) = -1;
        end
    end

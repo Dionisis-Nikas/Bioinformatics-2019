@@ -1,11 +1,13 @@
 clear
 clc
+lysozyme = fastaread('lysozyme.txt');
+nucleo = fastaread('a-lactalbumin.txt');
 
 %%our sequences
 seq1 = lysozyme.Sequence;
 seq2 = nucleo.Sequence;
-seq1= 'GTAGGCTTAAGGTTA';
-seq2= 'TAGATA'; %the adaptive sequence
+%seq1= 'GTAGGCTTAAGGTTA';
+%seq2= 'TAGATA'; %the adaptive sequence
 
 %%the scoring matrix for each letter in the form of:
 %%     A C G T
