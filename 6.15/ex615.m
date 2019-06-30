@@ -3,21 +3,21 @@ clc
 nucleo = fastaread('a-lactalbumin.txt');
 seq = nucleo.Sequence;
 
-player_win = []; %%if sequence is empty p1 wins 
+player_win = []; %%if sequence is empty player1 wins 
 player_win = [player_win 1 1];
 player_moves = [1 2];
 for i = 3:length(seq)
-    if ~player_win(i-2)  %i - 2 νουκλεοτίδια από την ακολουθία
+    if ~player_win(i-2)  %i - 2 nucleotides from the sequence
        player_win = [player_win 1];
        player_moves = [player_moves 2];
        moves = [];
-   elseif ~player_win(i-1)  % i - 1 νουκλεοτίδιο
+   elseif ~player_win(i-1)  % i - 1 nucleotide from the sequence
        player_win = [player_win 1];
        player_moves = [player_moves 2];
        moves = [];
     else
        player_win = [player_win 0];
-       %player_moves = [player_moves 2];  νομίζω πως δεν χρειάζεται δες το
+      
     end
     
         

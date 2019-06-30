@@ -10,7 +10,7 @@ katastaseis = ["start ","D1 ","D2 ","end"] ;
 x = [1 1 2 1 2 2];
 prob_init = [0.5;0.5];
 seq = x;
-[maximum,best_path,second_path] = viterbi6(prob_init,A,B,x);
+[maximum,best_path,second_path] = viterbi6(prob_init,A,B,x); %function
 best_path = fliplr(best_path);
 second_path = fliplr(second_path);
 disp("Best score was: "+maximum)
