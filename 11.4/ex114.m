@@ -9,7 +9,6 @@ prob_init = [0.5; 0.5];
 seq = [x];
 
 [score,best_path] = viterbi4(prob_init,A,B,x); % function
-best_path = best_path;
 disp("Best score was: "+score)
 final = '';
 for i=1:size(x,2),

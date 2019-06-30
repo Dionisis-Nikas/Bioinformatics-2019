@@ -45,7 +45,6 @@ function [maximum,best_path,second_path] = viterbi6(prob_init,A,B,x)
     [maxscore,index] = max((C(:,T+1)));
     maximum = maxscore;
     pred(N,T) = index;
-    t = T-1;
     t = T;
     best_path = [index];
     second_path = [index];

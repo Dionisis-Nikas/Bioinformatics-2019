@@ -45,7 +45,7 @@ function [maximum,best_path,second_path] = viterbi4(prob_init,A,B,x)
     C
     while t~=0,
         [score,index] = max(vp(t,:,index));
-        best_path = [best_path index];
+        best_path = [index best_path];
         t = t-1;
         if t == 0,
             break
